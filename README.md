@@ -13,9 +13,7 @@ A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTM
 * **Responsive:** Designed for both desktop and mobile devices.
 
 ## How to Use
-1. Clone the repository.
-2. Open `wx.html` in any modern web browser.
-3. Enter a 5-digit US ZIP code to view the weather.
+Download the raw index.html file, rename it whatever you want and put it on your desktop or homescreen.  No server needed.
 
 ## Known Issues ⚠️
 * **Bugs:** Radar source toggles none functional.  CSS highlighting issues for zips and a few other minor tweaks.
