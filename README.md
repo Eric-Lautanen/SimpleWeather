@@ -15,9 +15,6 @@ A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTM
 ## How to Use
 Download the raw index.html file, rename it whatever you want and put it on your desktop or homescreen.  No server needed.
 
-## Known Issues ⚠️
-* **Bugs:** Radar source toggles none functional.  CSS highlighting issues for zips and a few other minor tweaks.
-
 ## Credits
 * **Weather Data:** [National Weather Service API](https://www.weather.gov/documentation/services-web-api)
 * **Location Data:** [Zippopotam.us](https://api.zippopotam.us)
