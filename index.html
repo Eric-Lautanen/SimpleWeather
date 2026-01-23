@@ -91,6 +91,9 @@
         
         /* Global status and error states */
         .error{background-color:#ff4444;color:white;padding:1rem;border-radius:8px;margin-bottom:1rem;text-align:center}
+        fieldset { border: none; margin: 0; padding: 0; }
+        legend.section-title { font-weight: 600; display: block; margin-bottom: 0.75rem; padding: 0; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
         /* Responsive breakpoints for mobile devices */
         @media (max-width: 900px) {
@@ -261,57 +264,59 @@
 </head>
 <body>
     <div id="menu-overlay"></div>
-    <button id="theme-toggle" class="nav-btn">🌙</button>
-    <button id="menu-toggle" class="nav-btn">☰</button>
+    <button id="theme-toggle" class="nav-btn" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
+    <button id="menu-toggle" class="nav-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
     <div id="main-container">
-        <div id="controls-panel">
+        <div id="controls-panel" role="complementary" aria-label="Location controls">
             <div id="recent-zips" class="card">
-                <form id="zip-form">
-                    <input type="text" id="location-input" placeholder="City or Zip (Global)" required>
+                <form id="zip-form" role="search">
+                    <input type="text" id="location-input" placeholder="City or Zip (Global)" required aria-label="Search for a city or zip code">
                     <button type="submit" id="set-zip-btn" class="action-btn">Go</button>
                 </form>
                 <h3>Recent Locations</h3>
-                <div id="recent-list"></div>
+                <div id="recent-list" role="list" aria-live="polite"></div>
             </div>
             
             <div id="radar-source-selector" class="card">
-                <label class="section-title">Global Map Layers</label>
-                <div class="radio-options">
-                    <label class="radio-option">
-                        <input type="radio" id="radar-rainviewer" name="radar-source" value="rainviewer" checked>
-                        <span>RainViewer (Radar)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" id="radar-satellite" name="radar-source" value="satellite">
-                        <span>Satellite (Clouds)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" id="radar-topography" name="radar-source" value="topography">
-                        <span>Topography</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" id="radar-worldimagery" name="radar-source" value="worldimagery">
-                        <span>World Imagery (Static)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" id="radar-night" name="radar-source" value="night">
-                        <span>NASA Earth at Night</span>
-                    </label>
-                </div>
+                <fieldset>
+                    <legend class="section-title">Global Map Layers</legend>
+                    <div class="radio-options">
+                        <label class="radio-option">
+                            <input type="radio" id="radar-rainviewer" name="radar-source" value="rainviewer" checked aria-label="RainViewer radar layer">
+                            <span>RainViewer (Radar)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="radar-satellite" name="radar-source" value="satellite" aria-label="Satellite cloud layer">
+                            <span>Satellite (Clouds)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="radar-topography" name="radar-source" value="topography" aria-label="Topography layer">
+                            <span>Topography</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="radar-worldimagery" name="radar-source" value="worldimagery" aria-label="World imagery layer">
+                            <span>World Imagery (Static)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" id="radar-night" name="radar-source" value="night" aria-label="NASA Earth at night layer">
+                            <span>NASA Earth at Night</span>
+                        </label>
+                    </div>
+                </fieldset>
             </div>
             <button id="close-menu-btn" class="action-btn" style="width:100%; margin-top:auto; display:none;">Close Menu</button>
         </div>
 
         <div id="weather-container">
             <div id="map-wrapper">
-                <div id="map"></div>
-                <div id="radar-timestamp">Loading radar...</div>
+                <div id="map" role="img" aria-label="Interactive weather map"></div>
+                <div id="radar-timestamp" aria-live="polite" aria-atomic="true">Loading radar...</div>
             </div>
-            <div id="current-weather" class="card">
+            <div id="current-weather" class="card" role="region" aria-label="Current weather conditions">
                 <h2>Current Weather</h2>
-                <p id="current-temp">--°F</p>
-                <p id="current-desc">Loading...</p>
+                <p id="current-temp" aria-label="Current temperature">--°F</p>
+                <p id="current-desc" aria-label="Weather description">Loading...</p>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -328,7 +333,7 @@
                     </div>
                 </div>
             </div>
-            <div id="forecast"></div>
+            <div id="forecast" role="region" aria-label="7-day weather forecast"></div>
         </div>
     </div>
 
