@@ -25,15 +25,15 @@
         /* Layout */
         #main-container{width:100%;max-width:1400px;margin:0 auto;padding:1.5rem;padding-top:5rem;display:flex;gap:1.5rem;align-items:flex-start}
         
-        /* Controls Panel (Left Side on Desktop, Drawer on Mobile) */
+        /* Controls Panel */
         #controls-panel{width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:1rem;transition:transform 0.3s ease-in-out}
         
-        /* Common Card Styles */
+        /* Cards */
         .card{background-color:var(--card-bg);padding:1rem;border-radius:12px;box-shadow:var(--shadow)}
         
-        /* Forms & Inputs */
+        /* Forms */
         #zip-form{display:flex;gap:0.5rem;margin-bottom:1rem}
-        #zip-input{flex:1;padding:0.75rem;border:1px solid #ccc;border-radius:8px;background-color:var(--bg-color);color:var(--text-color);font-size:16px;min-width:0} /* 16px prevents iOS zoom */
+        #zip-input{flex:1;padding:0.75rem;border:1px solid #ccc;border-radius:8px;background-color:var(--bg-color);color:var(--text-color);font-size:16px;min-width:0}
         #zip-input:focus{border-color:var(--accent-color);outline:none}
         
         button.action-btn{padding:0.5rem 1rem;background-color:var(--accent-color);color:white;border:none;border-radius:8px;cursor:pointer;font-size:0.95rem;font-weight:600}
@@ -43,33 +43,26 @@
         /* Recent Zips */
         #recent-zips h3{margin:0 0 1rem 0;font-size:1.1rem}
         #recent-list{display:flex;flex-direction:column;gap:0.5rem;max-height:300px;overflow-y:auto}
-        .recent-item{display:flex;justify-content:space-between;align-items:center;padding:0.75rem;background-color:var(--bg-color);border-radius:8px;cursor:pointer;border-left: 4px solid transparent; transition: all 0.2s;}
+        .recent-item{display:flex;justify-content:space-between;align-items:center;padding:0.75rem;background-color:var(--bg-color);border-radius:8px;cursor:pointer;border-left: 4px solid transparent; transition: all 0.2s}
         .recent-item:hover{background-color:rgba(0,0,0,0.05)}
         
-        /* Active State for Recent Items */
-        .recent-item.active {
-            border-left-color: var(--accent-color);
-            background-color: rgba(0, 123, 255, 0.08);
-        }
-        body.dark .recent-item.active {
-            background-color: rgba(13, 110, 253, 0.15);
-        }
-        body.dark .recent-item:hover {
-            background-color: rgba(255,255,255,0.05);
-        }
+        /* Active State */
+        .recent-item.active {border-left-color: var(--accent-color); background-color: rgba(0, 123, 255, 0.08)}
+        body.dark .recent-item.active {background-color: rgba(13, 110, 253, 0.15)}
+        body.dark .recent-item:hover {background-color: rgba(255,255,255,0.05)}
 
         .recent-info{flex:1}
         .recent-zip{font-weight:bold}
         .recent-city{font-size:0.8rem;opacity:0.8}
         .remove-btn{background:none;border:none;color:inherit;font-size:1.5rem;padding:0 0.5rem;opacity:0.5;cursor:pointer}
-        .remove-btn:hover{opacity:1; color: #ff4444;}
+        .remove-btn:hover{opacity:1; color: #ff4444}
 
         /* Radar Selector */
         #radar-source-selector label.section-title{font-weight:600;display:block;margin-bottom:0.75rem}
         .radio-option{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;padding:0.5rem;border-radius:6px;cursor:pointer}
         .radio-option:hover{background-color:var(--bg-color)}
 
-        /* Weather Display (Right Side) */
+        /* Weather Display */
         #weather-container{flex:1;min-width:0;display:flex;flex-direction:column;gap:1.5rem}
         
         #map-wrapper{position:relative;width:100%}
@@ -89,45 +82,19 @@
         .loading{text-align:center;padding:2rem;color:var(--accent-color)}
         .error{background-color:#ff4444;color:white;padding:1rem;border-radius:8px;margin-bottom:1rem;text-align:center}
 
-        /* Mobile Optimization */
+        /* Mobile */
         @media (max-width: 900px) {
-            #menu-toggle{display:flex} /* Show Hamburger */
+            #menu-toggle{display:flex}
             #main-container{flex-direction:column;padding:0;padding-top:0}
-            
-            /* The Drawer Menu */
-            #controls-panel{
-                position:fixed;
-                top:0;
-                right:0;
-                height:100vh;
-                width:85%;
-                max-width:320px;
-                background-color:var(--card-bg);
-                z-index:3000;
-                padding:5rem 1.5rem 2rem 1.5rem;
-                box-shadow:-5px 0 15px rgba(0,0,0,0.3);
-                transform:translateX(100%); /* Hidden by default */
-                overflow-y:auto;
-            }
+            #controls-panel{position:fixed;top:0;right:0;height:100vh;width:85%;max-width:320px;background-color:var(--card-bg);z-index:3000;padding:5rem 1.5rem 2rem 1.5rem;box-shadow:-5px 0 15px rgba(0,0,0,0.3);transform:translateX(100%);overflow-y:auto}
             #controls-panel.open{transform:translateX(0)}
-            
-            /* Overlay when menu is open */
-            #menu-overlay{
-                position:fixed;top:0;left:0;width:100%;height:100%;
-                background:rgba(0,0,0,0.5);z-index:2900;
-                opacity:0;pointer-events:none;transition:opacity 0.3s;
-                backdrop-filter:blur(2px);
-            }
+            #menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2900;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(2px)}
             #menu-overlay.open{opacity:1;pointer-events:all}
-
-            /* Full Width Map & Content */
             #weather-container{width:100%;gap:0}
             #map{border-radius:0;height:60vh;border-bottom:1px solid rgba(0,0,0,0.1)}
             #current-weather{border-radius:0;box-shadow:none;border-bottom:1px solid rgba(0,0,0,0.05);padding:1.5rem}
             #forecast{padding:1rem;gap:0.75rem}
             .forecast-card{background-color:var(--bg-color);box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.05)}
-            
-            /* Theme Toggle adjustment */
             #theme-toggle{top:1rem;left:1rem;width:45px;height:45px;background:rgba(255,255,255,0.8);backdrop-filter:blur(4px)}
             body.dark #theme-toggle{background:rgba(30,30,30,0.8)}
             #menu-toggle{top:1rem;right:1rem;width:45px;height:45px;background:var(--accent-color);color:white}
@@ -187,7 +154,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script>
-        // --- UI & Menu Logic ---
+        // --- UI Logic ---
         const menuToggle = document.getElementById('menu-toggle');
         const controlsPanel = document.getElementById('controls-panel');
         const overlay = document.getElementById('menu-overlay');
@@ -207,35 +174,31 @@
             }
         }
 
-        menuToggle.addEventListener('click', () => {
-            const isOpen = controlsPanel.classList.contains('open');
-            toggleMenu(!isOpen);
-        });
-
+        menuToggle.addEventListener('click', () => toggleMenu(!controlsPanel.classList.contains('open')));
         overlay.addEventListener('click', () => toggleMenu(false));
         closeMenuBtn.addEventListener('click', () => toggleMenu(false));
 
-        // --- Weather Logic ---
+        // --- State Management ---
         const state = {
-            zip: '',
-            isDark: false,
+            zip: localStorage.getItem('zip') || '49855',
+            isDark: localStorage.getItem('theme') === 'dark',
             map: null,
+            baseLayer: null,
             radarLayers: [],
             currentRadarIndex: 0,
             radarInterval: null,
             radarTimes: [],
             recentZips: [],
             weatherRefreshInterval: null,
-            radarSource: 'rainviewer'
+            radarSource: localStorage.getItem('radarSource') || 'rainviewer'
         };
 
+        // --- ZIP & Recent List Logic ---
         function loadRecentZips() {
-            const stored = localStorage.getItem('recentZips');
-            if (stored) {
-                try {
-                    state.recentZips = JSON.parse(stored);
-                } catch (e) { state.recentZips = []; }
-            }
+            try {
+                const stored = localStorage.getItem('recentZips');
+                state.recentZips = stored ? JSON.parse(stored) : [];
+            } catch (e) { state.recentZips = []; }
         }
 
         function saveRecentZips() {
@@ -246,12 +209,6 @@
             state.recentZips = state.recentZips.filter(item => item.zip !== zip);
             state.recentZips.unshift({ zip, city, state: stateName });
             if (state.recentZips.length > 10) state.recentZips = state.recentZips.slice(0, 10);
-            saveRecentZips();
-            renderRecentZips();
-        }
-
-        function removeRecentZip(zip) {
-            state.recentZips = state.recentZips.filter(item => item.zip !== zip);
             saveRecentZips();
             renderRecentZips();
         }
@@ -267,67 +224,61 @@
             
             state.recentZips.forEach(item => {
                 const div = document.createElement('div');
-                div.className = 'recent-item';
-                
-                // Active class if matches current zip
-                if (item.zip === state.zip) {
-                    div.classList.add('active');
-                }
-
+                div.className = 'recent-item' + (item.zip === state.zip ? ' active' : '');
                 div.innerHTML = `
                     <div class="recent-info">
                         <div class="recent-zip">${item.zip}</div>
                         <div class="recent-city">${item.city}, ${item.state}</div>
                     </div>
-                    <button class="remove-btn" data-zip="${item.zip}">×</button>
+                    <button class="remove-btn" title="Remove">×</button>
                 `;
                 
-                div.querySelector('.recent-info').addEventListener('click', () => {
-                    state.zip = item.zip;
-                    localStorage.setItem('zip', state.zip);
-                    document.getElementById('zip-input').value = state.zip;
-                    toggleMenu(false); 
-                    loadWeather();
-                    // Re-render to update active state
-                    renderRecentZips();
-                });
-                
+                div.querySelector('.recent-info').addEventListener('click', () => selectZip(item.zip));
                 div.querySelector('.remove-btn').addEventListener('click', (e) => {
                     e.stopPropagation();
-                    removeRecentZip(item.zip);
+                    state.recentZips = state.recentZips.filter(z => z.zip !== item.zip);
+                    saveRecentZips();
+                    renderRecentZips();
                 });
                 
                 list.appendChild(div);
             });
         }
 
-        // Theme Handling
-        const themeToggle = document.getElementById('theme-toggle');
-        const savedTheme = localStorage.getItem('theme');
-        state.isDark = savedTheme === 'dark';
-        document.body.classList.toggle('dark', state.isDark);
-        themeToggle.textContent = state.isDark ? '☀️' : '🌙';
+        // Consolidated ZIP Selection Logic
+        function selectZip(newZip) {
+            if (state.zip === newZip && document.getElementById('current-temp').textContent !== '--°F') return;
+            
+            state.zip = newZip;
+            localStorage.setItem('zip', state.zip);
+            document.getElementById('zip-input').value = state.zip;
+            toggleMenu(false);
+            loadWeather();
+        }
 
-        themeToggle.addEventListener('click', () => {
+        // --- Initialization & Event Listeners ---
+        document.body.classList.toggle('dark', state.isDark);
+        document.getElementById('theme-toggle').textContent = state.isDark ? '☀️' : '🌙';
+        document.getElementById('zip-input').value = state.zip;
+
+        // Restore saved radar radio
+        const savedRadio = document.getElementById(`radar-${state.radarSource}`);
+        if (savedRadio) savedRadio.checked = true;
+
+        document.getElementById('zip-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const val = document.getElementById('zip-input').value.trim();
+            if (val.length === 5 && /^\d+$/.test(val)) selectZip(val);
+            else showError('Please enter a valid 5-digit ZIP code.');
+        });
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
             state.isDark = !state.isDark;
             document.body.classList.toggle('dark', state.isDark);
-            themeToggle.textContent = state.isDark ? '☀️' : '🌙';
+            document.getElementById('theme-toggle').textContent = state.isDark ? '☀️' : '🌙';
             localStorage.setItem('theme', state.isDark ? 'dark' : 'light');
             updateMapTheme();
         });
-
-        // Radar Source Handling
-        const savedRadarSource = localStorage.getItem('radarSource');
-        if (savedRadarSource) {
-            // Check if saved source is still valid (we removed openweather)
-            if (['rainviewer', 'noaa', 'satellite'].includes(savedRadarSource)) {
-                state.radarSource = savedRadarSource;
-                const savedRadio = document.getElementById(`radar-${savedRadarSource}`);
-                if (savedRadio) savedRadio.checked = true;
-            } else {
-                 state.radarSource = 'rainviewer';
-            }
-        }
 
         document.querySelectorAll('input[name="radar-source"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
@@ -337,112 +288,78 @@
             });
         });
 
-        // ZIP Handling
-        loadRecentZips();
-        state.zip = localStorage.getItem('zip') || '49855';
-        document.getElementById('zip-input').value = state.zip;
-
-        const zipForm = document.getElementById('zip-form');
-        const setZipBtn = document.getElementById('set-zip-btn');
-
-        zipForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const newZip = document.getElementById('zip-input').value.trim();
-            if (newZip.length === 5 && /^\d+$/.test(newZip)) {
-                state.zip = newZip;
-                localStorage.setItem('zip', state.zip);
-                toggleMenu(false);
-                loadWeather();
-            } else {
-                showError('Please enter a valid 5-digit ZIP code.');
-            }
-        });
-
-        function showError(message) {
+        // --- Weather & API ---
+        function showError(msg) {
+            const errDiv = document.createElement('div');
+            errDiv.className = 'error';
+            errDiv.textContent = msg;
             const container = document.getElementById('weather-container');
-            const existingError = document.querySelector('.error');
-            if (existingError) existingError.remove();
-
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.textContent = message;
-            
-            const mapWrapper = document.getElementById('map-wrapper');
-            container.insertBefore(errorDiv, mapWrapper.nextSibling);
-            
-            setTimeout(() => errorDiv.remove(), 5000);
-        }
-
-        function showLoading(show) {
-            setZipBtn.disabled = show;
-            setZipBtn.textContent = show ? '...' : 'Go';
-        }
-
-        // API Functions
-        async function getLocationFromZip(zip) {
-            const res = await fetch(`https://api.zippopotam.us/us/${zip}`);
-            if (!res.ok) throw new Error('Invalid ZIP code');
-            const data = await res.json();
-            const place = data.places[0];
-            return {
-                lat: parseFloat(place.latitude),
-                lon: parseFloat(place.longitude),
-                city: place['place name'],
-                state: place.state
-            };
-        }
-
-        async function fetchWeather(lat, lon) {
-            const pointRes = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
-            if (!pointRes.ok) throw new Error('Unable to fetch weather data');
-            const pointData = await pointRes.json();
-            const forecastUrl = pointData.properties.forecast;
-
-            const forecastRes = await fetch(forecastUrl, { headers: { 'User-Agent': 'QuickWeatherPWA/1.0' } });
-            if (!forecastRes.ok) throw new Error('Unable to fetch forecast');
-            const forecastData = await forecastRes.json();
-            return forecastData.properties.periods;
+            container.insertBefore(errDiv, document.getElementById('map-wrapper').nextSibling);
+            setTimeout(() => errDiv.remove(), 5000);
         }
 
         async function loadWeather() {
-            showLoading(true);
+            const btn = document.getElementById('set-zip-btn');
+            btn.disabled = true; btn.textContent = '...';
+            
             try {
-                const { lat, lon, city, state: stateName } = await getLocationFromZip(state.zip);
-                addRecentZip(state.zip, city, stateName);
-
-                const periods = await fetchWeather(lat, lon);
-                const current = periods[0];
+                // 1. Get Geo Data
+                const geoRes = await fetch(`https://api.zippopotam.us/us/${state.zip}`);
+                if (!geoRes.ok) throw new Error('Invalid ZIP');
+                const geoData = await geoRes.json();
+                const place = geoData.places[0];
+                const lat = parseFloat(place.latitude);
+                const lon = parseFloat(place.longitude);
                 
+                // 2. Add to History
+                addRecentZip(state.zip, place['place name'], place.state);
+
+                // 3. Get Forecast
+                const pointsRes = await fetch(`https://api.weather.gov/points/${lat},${lon}`);
+                if (!pointsRes.ok) throw new Error('Weather API Error');
+                const pointsData = await pointsRes.json();
+                
+                const forecastRes = await fetch(pointsData.properties.forecast);
+                if (!forecastRes.ok) throw new Error('Forecast Error');
+                const forecastData = await forecastRes.json();
+                const periods = forecastData.properties.periods;
+
+                // 4. Update UI
+                const current = periods[0];
                 document.getElementById('current-temp').textContent = `${current.temperature}°${current.temperatureUnit}`;
                 document.getElementById('current-desc').textContent = current.shortForecast;
 
                 const forecastDiv = document.getElementById('forecast');
                 forecastDiv.innerHTML = '';
-                periods.slice(1, 7).forEach(period => {
-                    const card = document.createElement('div');
-                    card.className = 'forecast-card card';
-                    card.innerHTML = `
-                        <h3>${period.name}</h3>
-                        <div class="temp">${period.temperature}°${period.temperatureUnit}</div>
-                        <p style="font-size: 0.9rem; margin:0">${period.shortForecast}</p>
-                    `;
-                    forecastDiv.appendChild(card);
+                periods.slice(1, 7).forEach(p => {
+                    const el = document.createElement('div');
+                    el.className = 'forecast-card card';
+                    el.innerHTML = `<h3>${p.name}</h3><div class="temp">${p.temperature}°${p.temperatureUnit}</div><p style="font-size:0.9rem;margin:0">${p.shortForecast}</p>`;
+                    forecastDiv.appendChild(el);
                 });
 
+                // 5. Update Map
                 loadMap(lat, lon);
                 
+                // 6. Set Refresh
                 if (state.weatherRefreshInterval) clearInterval(state.weatherRefreshInterval);
                 state.weatherRefreshInterval = setInterval(loadWeather, 10 * 60 * 1000);
+
             } catch (err) {
-                console.error('Weather error:', err);
-                showError('Error loading data. Check ZIP or connection.');
+                console.error(err);
+                showError('Error loading data. Check connection.');
             } finally {
-                showLoading(false);
+                btn.disabled = false; btn.textContent = 'Go';
             }
         }
 
-        // Map Functions
-        let baseLayer;
+        // --- Map Logic ---
+        function createBaseLayer() {
+            return state.isDark 
+                ? L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' })
+                : L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
+        }
+
         function loadMap(lat, lon) {
             if (state.map) {
                 state.map.setView([lat, lon], 10);
@@ -453,136 +370,90 @@
             state.map = L.map('map', { zoomControl: false }).setView([lat, lon], 10);
             L.control.zoom({ position: 'bottomright' }).addTo(state.map);
             
-            const lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
-            const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' });
-            
-            baseLayer = state.isDark ? darkLayer : lightLayer;
-            baseLayer.addTo(state.map);
+            state.baseLayer = createBaseLayer();
+            state.baseLayer.addTo(state.map);
 
             loadAnimatedRadar();
         }
-        
-        function updateMapTheme() {
-            if (!state.map) return;
-            state.map.eachLayer((layer) => {
-                if (layer instanceof L.TileLayer && !state.radarLayers.includes(layer)) {
-                    state.map.removeLayer(layer);
-                }
-            });
-            const lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
-            const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '&copy; CartoDB' });
-            baseLayer = state.isDark ? darkLayer : lightLayer;
-            baseLayer.addTo(state.map);
-        }
 
-        function updateRadarTimestamp(timeStr) {
-            const el = document.getElementById('radar-timestamp');
-            if (timeStr) {
-                el.textContent = timeStr;
-            } else if (state.radarTimes.length > 0) {
-                const currentTime = state.radarTimes[state.currentRadarIndex];
-                const date = new Date(currentTime * 1000);
-                const tStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-                el.textContent = `Radar: ${tStr}`;
-            }
+        function updateMapTheme() {
+            if (!state.map || !state.baseLayer) return;
+            state.map.removeLayer(state.baseLayer);
+            state.baseLayer = createBaseLayer();
+            state.baseLayer.addTo(state.map);
+            state.baseLayer.bringToBack(); // Ensure radar stays on top
         }
 
         async function loadAnimatedRadar() {
-            // Clean up existing layers
-            state.radarLayers.forEach(layer => {
-                if (state.map.hasLayer(layer)) state.map.removeLayer(layer);
-            });
+            // Clean up
+            state.radarLayers.forEach(l => state.map.removeLayer(l));
             state.radarLayers = [];
             state.radarTimes = [];
-            if (state.radarInterval) {
-                clearInterval(state.radarInterval);
-                state.radarInterval = null;
-            }
+            if (state.radarInterval) clearInterval(state.radarInterval);
             
-            const timestampEl = document.getElementById('radar-timestamp');
-            timestampEl.textContent = 'Loading...';
+            const ts = document.getElementById('radar-timestamp');
+            ts.textContent = 'Loading Layer...';
 
             try {
-                // --- CASE 1: RAINVIEWER (Animated) ---
                 if (state.radarSource === 'rainviewer') {
                     const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
-                    if (!res.ok) throw new Error('Failed to fetch radar');
                     const data = await res.json();
                     
-                    const frames = data.radar.past.slice(-10).concat(data.radar.nowcast.slice(0, 2));
+                    // Temp-based color (Rain vs Snow)
+                    const tempTxt = document.getElementById('current-temp').textContent;
+                    const temp = parseInt(tempTxt) || 50;
+                    const color = temp <= 32 ? 2 : (temp <= 36 ? 4 : 1); 
+
+                    const frames = [...data.radar.past.slice(-10), ...data.radar.nowcast.slice(0, 2)];
                     
-                    // Color scheme
-                    const currentTempText = document.getElementById('current-temp').textContent;
-                    const tempMatch = currentTempText.match(/(-?\d+)/);
-                    const temp = tempMatch ? parseInt(tempMatch[0]) : 50;
-                    let colorScheme = 1; // Rain
-                    if (temp <= 32) colorScheme = 2; // Snow
-                    else if (temp <= 36) colorScheme = 4; // Mix
-                    
-                    frames.forEach((frame, idx) => {
-                        state.radarTimes.push(frame.time);
-                        const layer = L.tileLayer(
-                            `https://tilecache.rainviewer.com${frame.path}/256/{z}/{x}/{y}/${colorScheme}/1_1.png`, 
-                            {
-                                transparent: true, opacity: 0, zIndex: 1000 + idx,
-                                tileSize: 256, maxZoom: 18, minZoom: 0
-                            }
-                        );
-                        layer.addTo(state.map);
-                        state.radarLayers.push(layer);
+                    frames.forEach((f, i) => {
+                        state.radarTimes.push(f.time);
+                        const l = L.tileLayer(`https://tilecache.rainviewer.com${f.path}/256/{z}/{x}/{y}/${color}/1_1.png`, {
+                            opacity: 0, zIndex: 1000 + i, tileSize: 256
+                        });
+                        l.addTo(state.map);
+                        state.radarLayers.push(l);
                     });
 
-                    if (state.radarLayers.length > 0) {
-                        state.radarLayers[0].setOpacity(0.7);
-                        state.currentRadarIndex = 0;
-                        updateRadarTimestamp();
+                    // Animation Loop
+                    let idx = 0;
+                    const showFrame = () => {
+                        state.radarLayers.forEach(l => l.setOpacity(0));
+                        state.radarLayers[idx].setOpacity(0.7);
+                        const d = new Date(state.radarTimes[idx] * 1000);
+                        ts.textContent = `Radar: ${d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'})}`;
+                        idx = (idx + 1) % state.radarLayers.length;
+                    };
+                    
+                    if (state.radarLayers.length) {
+                        showFrame();
+                        state.radarInterval = setInterval(showFrame, 500);
                     }
-
-                    state.radarInterval = setInterval(() => {
-                        state.radarLayers[state.currentRadarIndex].setOpacity(0);
-                        state.currentRadarIndex = (state.currentRadarIndex + 1) % state.radarLayers.length;
-                        state.radarLayers[state.currentRadarIndex].setOpacity(0.7);
-                        updateRadarTimestamp();
-                    }, 500);
                 } 
-                
-                // --- CASE 2: NOAA NEXRAD (Static via IEM) ---
                 else if (state.radarSource === 'noaa') {
-                    timestampEl.textContent = 'Radar: NOAA (Latest)';
-                    // N0Q is higher res base reflectivity
-                    const layer = L.tileLayer(
-                        `https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png`,
-                        {
-                            transparent: true, opacity: 0.7, zIndex: 1000,
-                            attribution: 'IEM NEXRAD'
-                        }
-                    );
-                    layer.addTo(state.map);
-                    state.radarLayers.push(layer);
+                    ts.textContent = 'Radar: NOAA NEXRAD';
+                    const l = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                        opacity: 0.7, zIndex: 1000
+                    });
+                    l.addTo(state.map);
+                    state.radarLayers.push(l);
                 }
-
-                // --- CASE 3: SATELLITE (Static via IEM) ---
                 else if (state.radarSource === 'satellite') {
-                    timestampEl.textContent = 'Layer: Satellite (IR)';
-                    // GOES East Infrared
-                    const layer = L.tileLayer(
-                        `https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes-east-ir-4km-900913/{z}/{x}/{y}.png`,
-                        {
-                            transparent: true, opacity: 0.65, zIndex: 1000,
-                            attribution: 'IEM GOES'
-                        }
-                    );
-                    layer.addTo(state.map);
-                    state.radarLayers.push(layer);
+                    ts.textContent = 'Layer: Satellite (IR)';
+                    const l = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes-east-ir-4km-900913/{z}/{x}/{y}.png', {
+                        opacity: 0.65, zIndex: 1000
+                    });
+                    l.addTo(state.map);
+                    state.radarLayers.push(l);
                 }
-
-            } catch (err) {
-                console.error('Radar error:', err);
-                timestampEl.textContent = 'Layer unavailable';
+            } catch (e) {
+                console.error(e);
+                ts.textContent = 'Layer Unavailable';
             }
         }
 
-        renderRecentZips();
+        // Boot
+        loadRecentZips();
         loadWeather();
     </script>
 </body>
