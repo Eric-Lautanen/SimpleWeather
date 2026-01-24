@@ -438,7 +438,6 @@
     }
 
     // Build the HTML for the recent locations list in the sidebar
-// Build the HTML for the recent locations list in the sidebar
     function renderRecentLocations() {
         const list = document.getElementById('recent-list');
         list.innerHTML = '';
@@ -477,9 +476,20 @@
             
             div.querySelector('.remove-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
+                
+                // Check if we're deleting the current location
+                const isDeletingCurrent = isSameLocation(item, state.currentLocation);
+                
+                // Remove from list
                 state.recentLocations = state.recentLocations.filter(loc => !isSameLocation(loc, item));
                 saveRecentLocations();
-                renderRecentLocations();
+                
+                // If we deleted the current location and there are others, switch to the first one
+                if (isDeletingCurrent && state.recentLocations.length > 0) {
+                    selectLocation(state.recentLocations[0]);
+                } else {
+                    renderRecentLocations();
+                }
             });
             list.appendChild(div);
         });
