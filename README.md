@@ -1,6 +1,6 @@
 # Simple Weather PWA 🌦️
 
-A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTML, CSS, and JavaScript. Get current conditions, 7-day forecasts, and animated weather radar for any location worldwide.
+A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTML, CSS, and JavaScript. Get current conditions, 6-day forecasts, and animated weather radar for any location worldwide.
 
 [**🔗 Live Demo**](https://eric-lautanen.github.io/SimpleWeather/)
 
