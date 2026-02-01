@@ -73,6 +73,9 @@
         #current-temp{font-size:3.5rem;font-weight:800;margin:0.5rem 0;letter-spacing:-1px}
         #current-desc{font-size:1.2rem;opacity:0.9;margin:0}
         
+        /* Today's High/Low Range Styles */
+        #today-range { font-size: 1.1rem; font-weight: 500; margin-top: 0.5rem; opacity: 0.9; display: flex; justify-content: center; gap: 1.5rem; }
+        
         /* Secondary weather metrics grid (Wind, Humidity, Pressure) */
         .stats-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:1rem;margin-top:1.5rem;border-top:1px solid rgba(0,0,0,0.1);padding-top:1.5rem}
         body.dark .stats-grid{border-top-color:rgba(255,255,255,0.1)}
@@ -325,6 +328,8 @@
                 <h2>Current Weather</h2>
                 <p id="current-temp" aria-label="Current temperature">--°F</p>
                 <p id="current-desc" aria-label="Weather description">Loading...</p>
+                <div id="today-range">
+                    </div>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -685,6 +690,21 @@
             document.getElementById('current-temp').textContent = formatTemp(currentTemp);
             document.getElementById('current-desc').textContent = getWeatherDescription(cur.weather_code);
 
+            // Update Today's High/Low Range
+            const daily = data.daily;
+            let todayMax = daily.temperature_2m_max[0];
+            let todayMin = daily.temperature_2m_min[0];
+
+            if (state.useMetric) {
+                todayMax = toCelsius(todayMax);
+                todayMin = toCelsius(todayMin);
+            }
+            
+            document.getElementById('today-range').innerHTML = `
+                <span aria-label="High of ${formatTemp(todayMax)}">H: ${formatTemp(todayMax)}</span>
+                <span aria-label="Low of ${formatTemp(todayMin)}">L: ${formatTemp(todayMin)}</span>
+            `;
+
             // Update stats grid - temperature and wind both convert with metric toggle
             document.getElementById('val-wind').textContent = formatWind(cur.wind_speed_10m);
             document.getElementById('val-humid').textContent = `${cur.relative_humidity_2m}%`;
@@ -695,7 +715,6 @@
             const forecastDiv = document.getElementById('forecast');
             forecastDiv.innerHTML = '';
             
-            const daily = data.daily;
             for(let i = 1; i < Math.min(daily.time.length, 7); i++) {
                 const d = new Date(daily.time[i] + 'T12:00:00'); 
                 const dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
