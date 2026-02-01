@@ -2,7 +2,7 @@
 
 A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTML, CSS, and JavaScript. Get current conditions, 6-day forecasts, and animated weather radar for any location worldwide.
 
-[**🔗 Live Demo**](https://eric-lautanen.github.io/SimpleWeather/)
+[**🔗 Live Demo**](https://eric-lautanen.github.io/weather/)
 
 ---
 
@@ -29,7 +29,7 @@ A lightweight, no-build weather Progressive Web App (PWA) built with vanilla HTM
 ## How to Use
 
 ### Online
-Visit the [live demo](https://eric-lautanen.github.io/SimpleWeather/) in any modern web browser.
+Visit the [live demo](https://eric-lautanen.github.io/weather/) in any modern web browser.
 
 ### Offline/Standalone
 1. Download the `index.html` file from this repository
