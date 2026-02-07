@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#ffffff">
-    <title>SimpleWeather</title>
+    <title>Weather</title>
     <style>
         /* Define global CSS variables for theme switching and layout consistency */
         :root{--bg-color:#ffffff;--text-color:#000000;--accent-color:#007bff;--card-bg:#f8f9fa;--shadow:0 4px 6px rgba(0,0,0,0.1);--overlay-bg:rgba(255,255,255,0.95)}
@@ -766,12 +766,12 @@
     // Initialize or update the Leaflet map instance
     function loadMap(lat, lon) {
         if (state.map) {
-            state.map.setView([lat, lon], 8);
+            state.map.setView([lat, lon], 7);
             updateMapLayers(); 
             return;
         }
 
-        state.map = L.map('map', { zoomControl: false }).setView([lat, lon], 8);
+        state.map = L.map('map', { zoomControl: false, maxZoom: 9 }).setView([lat, lon], 7);
         L.control.zoom({ position: 'bottomright' }).addTo(state.map);
         
         state.baseLayer = createBaseLayer();
@@ -824,7 +824,7 @@
                 } else {
                     // Radar mode - use color scheme 4 for better precipitation visibility
                     if (data.radar && data.radar.past && data.radar.nowcast) {
-                        frames = [...data.radar.past.slice(-10), ...data.radar.nowcast];
+                        frames = [...data.radar.past.slice(-3), ...data.radar.nowcast.slice(0, 2)];
                     } else {
                         throw new Error('Radar data missing');
                     }
